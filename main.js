@@ -1,25 +1,17 @@
-var solve = files => { 
+let solve = files => { 
     files = files.map(item => item.match(/\.\w+$/)[0]);
-    let arr1 = [];
-    let arr2 = []; 
+    let obj = {};
     while (files.length > 0) {
         let i = files[0]; 
-        let count = 0; 
+        let count = 0;
         while (files.indexOf(i) !== -1) {
             files.splice(files.indexOf(i), 1);
             ++count;
         }
-        arr1.push(i);
-        arr2.push(count);
+        obj[i] = count;
     }
-    let arr =[];
-    let val = Math.max.apply(null, arr2);
-    for (let j = arr1.length - 1; j > -1; j--) {
-        if (val == arr2[j]) {
-            arr.push(arr1[j])
-        }
-    }
-    return arr;
+    let val = Math.max(...Object.values(obj));
+    return Object.keys(obj).filter(key => obj[key] === val).sort();
 } 
 
-solve(['index.html','style.css','main.js','style.css','main.js','main.js','style.css']);
+solve(['index.html','style.css','masdaain.js','styasdale.css','ma213in.js','main.js','style.css']);
